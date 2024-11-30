@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node.js, Express, MongoDB, and SQL Learning Path with Examples</title>
+    <title>Node.js, Express, MongoDB, SQL, JWT, and Image Storage Learning Path with Examples</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -33,210 +33,211 @@
 
 <body class="bg-gray-100">
     <header class="bg-blue-900 text-white text-center py-6">
-        <h1 class="text-3xl font-bold">Node.js, Express, MongoDB, and SQL Learning Path with Examples</h1>
-        <p class="text-lg">A structured guide with examples to master full-stack development using Node.js, Express.js, MongoDB, and SQL.</p>
+        <h1 class="text-3xl font-bold">Node.js, Express, MongoDB, SQL, JWT, and Image Storage Learning Path with Examples</h1>
+        <p class="text-lg">A structured guide with examples to master full-stack development using Node.js, Express.js, MongoDB, SQL, JWT, and Image Storage.</p>
     </header>
 
     <div class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Node.js Section -->
         <section class="content-section">
             <h2 class="text-2xl font-semibold text-blue-800 mb-4">Node.js Learning Path</h2>
             <ul class="list-disc pl-6 space-y-2 text-lg">
-                <li>
-                    <strong>Introduction to Node.js</strong>
-                    <p>Node.js is a runtime environment for executing JavaScript outside of a web browser. It allows developers to use JavaScript for both front-end and back-end development.</p>
-                    <pre><code>console.log("Hello, Node.js!");</code></pre>
+                <li><strong>Introduction to Node.js</strong>
+                    <p>Node.js is a JavaScript runtime that lets you run JavaScript on the server-side.</p>
+                    <pre><code>console.log('Hello from Node.js');</code></pre>
                 </li>
-                <li>
-                    <strong>Node.js Modules</strong>
-                    <p>Node.js uses modules to organize code into reusable units. Modules like `fs` (File System), `http`, and `path` provide built-in functionality.</p>
+                <li><strong>Event Loop in Node.js</strong>
+                    <p>The event loop handles asynchronous tasks in Node.js.</p>
+                    <pre><code>setTimeout(() => console.log('Delayed Log'), 2000);</code></pre>
+                </li>
+                <li><strong>Modules in Node.js</strong>
+                    <p>Node.js uses modules for code reuse. You can use built-in modules or create your own.</p>
                     <pre><code>const fs = require('fs');
 fs.readFile('example.txt', 'utf8', (err, data) => {
-  if (err) throw err;
-  console.log(data);
+    if (err) throw err;
+    console.log(data);
 });</code></pre>
                 </li>
-                <li>
-                    <strong>Asynchronous Programming</strong>
-                    <p>Node.js is built on asynchronous programming, meaning that it doesn't block other operations while waiting for some operations to complete.</p>
-                    <pre><code>fs.readFile('example.txt', 'utf8', (err, data) => {
-  if (err) throw err;
-  console.log(data);
-});
-console.log('This line executes first!');</code></pre>
-                </li>
-                <li>
-                    <strong>HTTP Module</strong>
-                    <p>Node.js has an HTTP module to create HTTP servers and handle requests.</p>
+                <li><strong>HTTP Module</strong>
+                    <p>The HTTP module allows you to create a server that listens for incoming requests.</p>
                     <pre><code>const http = require('http');
-
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!');
+    res.end('Hello World');
 });
-
-server.listen(3000, () => {
-  console.log('Server running at http://127.0.0.1:3000/');
-});</code></pre>
-                </li>
-                <li>
-                    <strong>Event Handling in Node.js</strong>
-                    <p>Node.js uses an event-driven model. The `EventEmitter` class allows you to create custom events.</p>
-                    <pre><code>const EventEmitter = require('events');
-const myEmitter = new EventEmitter();
-
-myEmitter.on('event', () => {
-  console.log('An event occurred!');
-});
-
-myEmitter.emit('event');</code></pre>
+server.listen(3000);</code></pre>
                 </li>
             </ul>
         </section>
 
+        <!-- Express.js Section -->
         <section class="content-section">
             <h2 class="text-2xl font-semibold text-blue-800 mb-4">Express.js Learning Path</h2>
             <ul class="list-disc pl-6 space-y-2 text-lg">
-                <li>
-                    <strong>Setting up Express</strong>
-                    <p>Express is a web framework for Node.js, simplifying the creation of servers and routes.</p>
+                <li><strong>Introduction to Express.js</strong>
+                    <p>Express.js is a web application framework for Node.js, simplifying server-side development.</p>
                     <pre><code>const express = require('express');
 const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello, Express!');
-});
-
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
-});</code></pre>
+app.get('/', (req, res) => res.send('Hello World'));
+app.listen(3000);</code></pre>
                 </li>
-                <li>
-                    <strong>Routing in Express</strong>
-                    <p>Express allows you to define routes for handling different HTTP methods like GET, POST, PUT, DELETE.</p>
+                <li><strong>Routing in Express.js</strong>
+                    <p>Express provides an easy way to handle routing.</p>
                     <pre><code>app.get('/about', (req, res) => {
-  res.send('About Us');
-});
-
-app.post('/contact', (req, res) => {
-  res.send('Contact Form Submitted');
+    res.send('About page');
 });</code></pre>
                 </li>
-                <li>
-                    <strong>Middleware in Express</strong>
-                    <p>Middleware functions are used to perform actions on the request before reaching the route handler.</p>
+                <li><strong>Middleware in Express.js</strong>
+                    <p>Middleware functions are used to modify the request/response objects.</p>
                     <pre><code>app.use((req, res, next) => {
-  console.log('Request received');
-  next();
+    console.log('Request received');
+    next();
 });</code></pre>
                 </li>
-                <li>
-                    <strong>Template Engines in Express</strong>
-                    <p>Express can use template engines like EJS to render dynamic HTML pages.</p>
-                    <pre><code>app.set('view engine', 'ejs');
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Express' });
-});</code></pre>
-                </li>
-                <li>
-                    <strong>RESTful APIs</strong>
-                    <p>Express is great for building RESTful APIs, allowing you to handle different HTTP requests for resources.</p>
-                    <pre><code>app.get('/api/users', (req, res) => {
-  res.json([{ name: 'Alice' }, { name: 'Bob' }]);
-});
-
-app.post('/api/users', (req, res) => {
-  res.json({ message: 'User added' });
+                <li><strong>Error Handling in Express.js</strong>
+                    <p>Express has built-in mechanisms for error handling.</p>
+                    <pre><code>app.use((err, req, res, next) => {
+    res.status(500).send('Something went wrong!');
 });</code></pre>
                 </li>
             </ul>
         </section>
 
+        <!-- MongoDB Section -->
         <section class="content-section">
             <h2 class="text-2xl font-semibold text-blue-800 mb-4">MongoDB Learning Path</h2>
             <ul class="list-disc pl-6 space-y-2 text-lg">
-                <li>
-                    <strong>Introduction to MongoDB</strong>
-                    <p>MongoDB is a NoSQL database, meaning it stores data in a flexible, JSON-like format, making it great for handling complex data structures.</p>
+                <li><strong>Introduction to MongoDB</strong>
+                    <p>MongoDB is a NoSQL database that stores data in flexible JSON-like format.</p>
                     <pre><code>const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/myapp', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/myapp');
+const Schema = mongoose.Schema;
+const UserSchema = new Schema({ name: String });
+const User = mongoose.model('User', UserSchema);
 </code></pre>
                 </li>
-                <li>
-                    <strong>CRUD Operations in MongoDB</strong>
-                    <p>CRUD (Create, Read, Update, Delete) operations are the basic functions to interact with MongoDB databases.</p>
-                    <pre><code>const User = mongoose.model('User', { name: String });
-
-const user = new User({ name: 'Alice' });
-user.save().then(() => console.log('User saved!'));
-
-User.find().then(users => console.log(users));</code></pre>
-                </li>
-                <li>
-                    <strong>Aggregation Framework</strong>
-                    <p>MongoDB's aggregation framework allows for complex data manipulations and transformations.</p>
-                    <pre><code>User.aggregate([
-  { $match: { name: 'Alice' } },
-  { $group: { _id: '$name', count: { $sum: 1 } } }
-]).then(result => console.log(result));</code></pre>
-                </li>
-                <li>
-                    <strong>Schema and Mongoose</strong>
-                    <p>Mongoose provides a higher-level abstraction to interact with MongoDB and define schemas for the data.</p>
-                    <pre><code>const userSchema = new mongoose.Schema({
-  name: { type: String, required: true }
-});
-
-const User = mongoose.model('User', userSchema);
-
-const newUser = new User({ name: 'Bob' });
-newUser.save().then(() => console.log('User saved!'));</code></pre>
+                <li><strong>CRUD Operations in MongoDB</strong>
+                    <p>Performing CRUD operations using MongoDB and Mongoose.</p>
+                    <pre><code>// Create
+const user = new User({ name: 'John' });
+user.save();
+// Read
+User.find({ name: 'John' });
+// Update
+User.updateOne({ name: 'John' }, { $set: { name: 'Doe' } });
+// Delete
+User.deleteOne({ name: 'John' });</code></pre>
                 </li>
             </ul>
         </section>
 
+        <!-- SQL Section -->
         <section class="content-section">
             <h2 class="text-2xl font-semibold text-blue-800 mb-4">SQL Learning Path</h2>
             <ul class="list-disc pl-6 space-y-2 text-lg">
-                <li>
-                    <strong>Introduction to SQL</strong>
-                    <p>SQL (Structured Query Language) is used to interact with relational databases. You can define, manipulate, and query data stored in relational tables.</p>
-                    <pre><code>-- Creating a table in SQL
-CREATE TABLE users (
-  id INT PRIMARY KEY,
-  name VARCHAR(100)
-);</code></pre>
+                <li><strong>Introduction to SQL</strong>
+                    <p>SQL is a standard language for managing and manipulating relational databases.</p>
+                    <pre><code>SELECT * FROM users;</code></pre>
                 </li>
-                <li>
-                    <strong>Basic SQL Queries</strong>
-                    <p>SQL queries are used to interact with the database. Common queries include SELECT, INSERT, UPDATE, and DELETE.</p>
-                    <pre><code>-- Inserting data
-INSERT INTO users (id, name) VALUES (1, 'Alice');
-
--- Selecting data
-SELECT * FROM users;</code></pre>
-                </li>
-                <li>
-                    <strong>Joins in SQL</strong>
-                    <p>SQL joins allow you to combine data from multiple tables based on related columns.</p>
-                    <pre><code>-- Inner join example
-SELECT users.name, orders.amount
-FROM users
-INNER JOIN orders ON users.id = orders.user_id;</code></pre>
-                </li>
-                <li>
-                    <strong>SQL Aggregate Functions</strong>
-                    <p>SQL provides aggregate functions like COUNT, SUM, AVG, MIN, and MAX to perform operations on data.</p>
-                    <pre><code>-- Count users
-SELECT COUNT(*) FROM users;
-
--- Average order amount
-SELECT AVG(amount) FROM orders;</code></pre>
+                <li><strong>SQL CRUD Operations</strong>
+                    <p>Learn how to perform CRUD operations (Create, Read, Update, Delete) using SQL.</p>
+                    <pre><code>INSERT INTO users (name) VALUES ('John');
+SELECT * FROM users;
+UPDATE users SET name = 'Doe' WHERE name = 'John';
+DELETE FROM users WHERE name = 'Doe';</code></pre>
                 </li>
             </ul>
         </section>
 
+        <!-- JWT Section -->
+        <section class="content-section">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4">JWT (JSON Web Token) Learning Path</h2>
+            <ul class="list-disc pl-6 space-y-2 text-lg">
+                <li><strong>Introduction to JWT</strong>
+                    <p>JWT is an open standard for securely transmitting information between parties as a JSON object. It is used for authentication and information exchange in web applications.</p>
+                    <pre><code>const jwt = require('jsonwebtoken');
+
+const token = jwt.sign({ userId: '123' }, 'secretkey', { expiresIn: '1h' });
+console.log(token);</code></pre>
+                </li>
+                <li><strong>JWT Authentication Flow</strong>
+                    <p>JWT is typically used in APIs for user authentication. The flow involves generating a JWT upon user login, and the client includes the token in subsequent requests to authenticate API calls.</p>
+                    <pre><code>// Example of generating and verifying JWT in an Express route
+app.post('/login', (req, res) => {
+    const token = jwt.sign({ userId: '123' }, 'secretkey', { expiresIn: '1h' });
+    res.json({ token });
+});
+
+app.get('/protected', (req, res) => {
+    const token = req.headers['authorization'].split(' ')[1];
+    jwt.verify(token, 'secretkey', (err, decoded) => {
+        if (err) return res.status(403).json({ message: 'Forbidden' });
+        res.json({ message: 'Protected content', userId: decoded.userId });
+    });
+});</code></pre>
+                </li>
+                <li><strong>JWT Verification</strong>
+                    <p>To verify a JWT, the server checks the token sent by the client, decodes it, and ensures the signature matches the server's secret key.</p>
+                    <pre><code>const token = req.headers['authorization'].split(' ')[1];
+jwt.verify(token, 'secretkey', (err, decoded) => {
+  if (err) return res.status(403).json({ message: 'Forbidden' });
+  console.log(decoded); // Payload info like userId
+});</code></pre>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Image Storage Section -->
+        <section class="content-section">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4">Image Storage Learning Path</h2>
+            <ul class="list-disc pl-6 space-y-2 text-lg">
+                <li><strong>Image Storage Locally using Multer</strong>
+                    <p>Multer is a middleware for handling image uploads in Node.js. It can store images locally on the server.</p>
+                    <pre><code>const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/upload', upload.single('image'), (req, res) => {
+    res.send('Image uploaded successfully');
+});</code></pre>
+                </li>
+                <li><strong>Storing Images in Cloud (AWS S3)</strong>
+                    <p>You can upload images to cloud storage like AWS S3 for scalability.</p>
+                    <pre><code>const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
+
+const uploadParams = {
+    Bucket: 'your-bucket-name',
+    Key: 'image.jpg',
+    Body: fs.createReadStream('image.jpg'),
+};
+
+s3.upload(uploadParams, (err, data) => {
+    if (err) console.log(err);
+    else console.log('Uploaded to S3:', data.Location);
+});</code></pre>
+                </li>
+                <li><strong>Serving Images from Cloud Storage</strong>
+                    <p>After uploading images to cloud storage, you can generate a URL to serve the image to clients.</p>
+                    <pre><code>const imageURL = data.Location; // URL to access the image
+res.json({ imageUrl: imageURL });</code></pre>
+                </li>
+                <li><strong>Image Optimization</strong>
+                    <p>Optimize images before uploading to save bandwidth and improve load times. Tools like `sharp` can help.</p>
+                    <pre><code>const sharp = require('sharp');
+
+sharp('image.jpg')
+  .resize(800)
+  .toFile('optimized-image.jpg', (err, info) => {
+    if (err) console.log(err);
+    console.log(info);
+});</code></pre>
+                </li>
+            </ul>
+        </section>
     </div>
+
+    <footer class="bg-blue-900 text-white text-center py-6">
+        <p>&copy; 2024 Full Stack Development Learning Path</p>
+    </footer>
 </body>
 
 </html>
